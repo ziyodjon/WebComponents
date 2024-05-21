@@ -6,16 +6,27 @@ export default class CustomPassword extends HTMLElement{
 
     constructor(){
         super();
+        this.customPassInpt = document.createElement('input');
+        this.customPassInpt.type = 'password';
+        this.customPassInpt.value = 'FakePassword';
+
+        this.customPassShowBtn = document.createElement('button');
+        this.customPassShowBtn.textContent = 'eye';
+        this.append(this.customPassInpt,this.customPassShowBtn);
+
+        this.customPassShowBtn.addEventListener('click', () => {
+            this.show();
+        });
     }
 
     show(){
-        document.getElementById('pass-input').setAttribute('type','text');
-        document.getElementById('custom-password').setAttribute('mode','visible');
+        this.customPassInpt.setAttribute('type','text');
+        this.setAttribute('mode','visible');
     }
 
     hide(){
-        document.getElementById('pass-input').setAttribute('type','password');
-        document.getElementById('custom-password').setAttribute('mode','hidden');
+        this.customPassInpt.setAttribute('type','password');
+        this.setAttribute('mode','hidden');
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
@@ -25,4 +36,5 @@ export default class CustomPassword extends HTMLElement{
             }
         }   
     }
+
 }
