@@ -46,6 +46,9 @@ export default class CustomPassword extends HTMLElement{
 
         if(attr === 'placeholder'){
             this.customPassInpt.setAttribute('placeholder',newValue);
+            this.customPassShowBtn.style.backgroundColor = 'navy';
+            this.customPassShowBtn.style.color = '#fff';
+            this.customPassInpt.classList.add('simple-class');
         }
     }
 
