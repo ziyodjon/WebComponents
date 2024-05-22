@@ -34,6 +34,9 @@ export default class CustomPassword extends HTMLElement{
             if(oldValue === 'visible'){
                 this.hide();
             }
+            if(newValue === 'visible'){
+                this.customPassInpt.setAttribute('type','text');
+            }
         }   
 
         if(attr === 'value'){
