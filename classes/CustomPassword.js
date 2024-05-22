@@ -1,14 +1,14 @@
 export default class CustomPassword extends HTMLElement{
 
     static get observedAttributes(){
-        return ['mode'];
+        return ['mode','value','placeholder'];
     }
 
     constructor(){
         super();
         this.customPassInpt = document.createElement('input');
         this.customPassInpt.type = 'password';
-        this.customPassInpt.value = 'FakePassword';
+        this.customPassInpt.value = '';
 
         this.customPassShowBtn = document.createElement('button');
         this.customPassShowBtn.textContent = 'eye';
@@ -35,6 +35,15 @@ export default class CustomPassword extends HTMLElement{
                 this.hide();
             }
         }   
+
+        if(attr === 'value'){
+            this.customPassInpt.setAttribute('value',newValue);
+            this.customPassInpt.value = newValue;
+        }
+
+        if(attr === 'placeholder'){
+            this.customPassInpt.setAttribute('placeholder',newValue);
+        }
     }
 
 }
