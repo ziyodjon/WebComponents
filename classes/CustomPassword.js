@@ -37,6 +37,10 @@ export default class CustomPassword extends HTMLElement{
             if(newValue === 'visible'){
                 this.customPassInpt.setAttribute('type','text');
             }
+            if(oldValue === 'hidden'){
+                console.log(attr);
+                this.customPassInpt.setAttribute('type','password');
+            }
         }   
 
         if(attr === 'value'){
