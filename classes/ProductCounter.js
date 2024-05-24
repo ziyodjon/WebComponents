@@ -7,7 +7,7 @@ export default class ProductCounter extends HTMLElement{
     constructor(){
         super();
         this.counter = this.getAttribute('count');
-        this.maxCount = this.getAttribute('max-count');
+        this.maxCount = this.getAttribute('max_count');
 
         this.plusBtn = document.createElement('button');
         this.plusBtn.textContent = '+';
