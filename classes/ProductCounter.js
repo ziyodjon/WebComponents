@@ -76,14 +76,9 @@ export default class ProductCounter extends HTMLElement{
         if(attr === 'max_count'){
             this.maxCount = newValue;
 
-            console.log(`Eski malumot: ${oldValue}`);
-            console.log(`Yangi malumot: ${newValue}`);
             if(oldValue < newValue && oldValue != null){
-                this.plusBtn.removeAttribute('disabled')
-                alert();
-                console.log('Inside');
+                this.plusBtn.removeAttribute('disabled');
             }
-            // console.log(typeof parseInt(this.maxCount));
         }
     }
 
