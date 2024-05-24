@@ -72,7 +72,7 @@ export default class ProductCounter extends HTMLElement{
             }
         }
 
-        if(attr === 'max-count'){
+        if(attr === 'max_count'){
             console.log(typeof parseInt(this.maxCount));
         }
     }
