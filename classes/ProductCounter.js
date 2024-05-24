@@ -1,12 +1,13 @@
 export default class ProductCounter extends HTMLElement{
     //counter = 0;
     static get observedAttributes(){
-        return ['count'];
+        return ['count','max_count'];
     }
 
     constructor(){
         super();
         this.counter = this.getAttribute('count');
+        this.maxCount = this.getAttribute('max-count');
 
         this.plusBtn = document.createElement('button');
         this.plusBtn.textContent = '+';
@@ -15,7 +16,7 @@ export default class ProductCounter extends HTMLElement{
 
         this.inptCounter = document.createElement('input');
 
-        this.inptCounter.setAttribute('value',1);
+        
         this.append(this.minusBtn,this.inptCounter,this.plusBtn);
 
         this.plusBtn.addEventListener('click', () => {
@@ -26,7 +27,7 @@ export default class ProductCounter extends HTMLElement{
             this.minus();
         });
 
-        if(this.counter >= 10){
+        if(this.counter >= parseInt(this.maxCount)){
             this.plusBtn.setAttribute('disabled',true);
             console.log("plus" + this.counter);
         }else{
@@ -55,7 +56,10 @@ export default class ProductCounter extends HTMLElement{
     attributeChangedCallback(attr, oldValue, newValue) {
         
         if(attr === 'count'){
-            if(newValue >= 10) {
+
+            this.inptCounter.setAttribute('value',newValue);
+
+            if(newValue >= parseInt(this.maxCount)) {
                 this.plusBtn.setAttribute('disabled',true);
             } else {
                 this.plusBtn.removeAttribute('disabled')
@@ -67,5 +71,25 @@ export default class ProductCounter extends HTMLElement{
                 this.minusBtn.removeAttribute('disabled')
             }
         }
+
+        if(attr === 'max-count'){
+            console.log(typeof parseInt(this.maxCount));
+        }
+    }
+
+    get count(){
+        return this.counter;
+    }
+
+    set count(value){
+        return this.setAttribute('count', value);
+    }
+
+    get max_count(){
+        return this.counter;
+    }
+
+    set max_count(value){
+        return this.setAttribute('count', value);
     }
 }

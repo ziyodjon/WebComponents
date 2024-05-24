@@ -61,7 +61,15 @@ export default class CustomPassword extends HTMLElement{
     }
 
     set value (value){
-        this.customPassInpt.setAttribute('value',value);
+        this.setAttribute('value',value);
+    }
+
+    get placeholder (){
+        return this.customPassInpt.value;
+    }
+
+    set placeholder (value){
+        this.setAttribute('value',value);
     }
 
 }
