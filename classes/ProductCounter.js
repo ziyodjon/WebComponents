@@ -58,6 +58,7 @@ export default class ProductCounter extends HTMLElement{
         if(attr === 'count'){
 
             this.inptCounter.setAttribute('value',newValue);
+            this.counter = newValue;
 
             if(newValue >= parseInt(this.maxCount)) {
                 this.plusBtn.setAttribute('disabled',true);
@@ -73,7 +74,16 @@ export default class ProductCounter extends HTMLElement{
         }
 
         if(attr === 'max_count'){
-            console.log(typeof parseInt(this.maxCount));
+            this.maxCount = newValue;
+
+            console.log(`Eski malumot: ${oldValue}`);
+            console.log(`Yangi malumot: ${newValue}`);
+            if(oldValue < newValue && oldValue != null){
+                this.plusBtn.removeAttribute('disabled')
+                alert();
+                console.log('Inside');
+            }
+            // console.log(typeof parseInt(this.maxCount));
         }
     }
 
