@@ -1,39 +1,71 @@
 export default class ProductCounter extends HTMLElement{
-    counter = 0;
+    //counter = 0;
     static get observedAttributes(){
-        return ['test'];
+        return ['count'];
     }
 
     constructor(){
         super();
-        this.inptCounter = document.getElementById('inp-counter');
-        this.productCounter = document.getElementById('product-counter');
+        this.counter = this.getAttribute('count');
+
+        this.plusBtn = document.createElement('button');
+        this.plusBtn.textContent = '+';
+        this.minusBtn = document.createElement('button');
+        this.minusBtn.textContent = '-';
+
+        this.inptCounter = document.createElement('input');
+
+        this.inptCounter.setAttribute('value',1);
+        this.append(this.minusBtn,this.inptCounter,this.plusBtn);
+
+        this.plusBtn.addEventListener('click', () => {
+            this.plus();
+        });
+
+        this.minusBtn.addEventListener('click', () => {
+            this.minus();
+        });
+
+        if(this.counter >= 10){
+            this.plusBtn.setAttribute('disabled',true);
+            console.log("plus" + this.counter);
+        }else{
+            console.log('minus', this.counter);
+            this.plusBtn.removeAttribute('disabled') 
+        }
+
+
+        
     }
 
 
     minus (){
-        if(this.inptCounter.value > 0){
-            document.getElementById('inp-counter').setAttribute('value', this.counter--);
-        }  
+        this.inptCounter.setAttribute('value',--this.counter);
+        this.setAttribute('count',this.counter); 
+       if(this.counter <= 0){
+            this.minusBtn.setAttribute('disabled',true);
+       }
     }
 
     plus (){
-       //document.getElementById('product-counter').setAttribute('test',this.counter++);
-        document.getElementById('inp-counter').setAttribute('value', this.counter++);
-        
-        
+        this.inptCounter.setAttribute('value',++this.counter);
+        this.setAttribute('count',this.counter);
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
-        if(attr === 'test'){
+        
+        if(attr === 'count'){
+            if(newValue >= 10) {
+                this.plusBtn.setAttribute('disabled',true);
+            } else {
+                this.plusBtn.removeAttribute('disabled')
+            }
 
-            console.log(oldValue);
-            console.log(newValue);
-            // if(oldValue > 0){
-            //     this.plus();
-            // }else{
-            //     this.minus();
-            // }
+            if(newValue <= 0) {
+                this.minusBtn.setAttribute('disabled', true)
+            } else {
+                this.minusBtn.removeAttribute('disabled')
+            }
         }
     }
 }

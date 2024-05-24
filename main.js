@@ -1,6 +1,6 @@
 import MyModal from "./classes/MyModal.js";
 import CustomPassword from "./classes/CustomPassword.js";
-//import ProductCounter from "./classes/ProductCounter.js";
+import ProductCounter from "./classes/ProductCounter.js";
 
 customElements.define('my-modal',MyModal);
 
@@ -16,3 +16,5 @@ document.getElementById('hide-modal-btn').addEventListener('click', () => {
 
 
  customElements.define('custom-password', CustomPassword);
+
+ customElements.define('product-counter',ProductCounter);
