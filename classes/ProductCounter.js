@@ -95,7 +95,7 @@ export default class ProductCounter extends HTMLElement{
     }
 
     set max_count(value){
-        return this.setAttribute('count', value);
+        this.setAttribute('count', value);
     }
 
     get value(){
@@ -104,5 +104,6 @@ export default class ProductCounter extends HTMLElement{
     
     set value(value){
         this.inptCounter.setAttribute('value',value);
+        this.setAttribute('count', value);
     }
 }
