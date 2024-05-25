@@ -20,8 +20,12 @@ export default class ProductCounter extends HTMLElement{
         
         this.append(this.minusBtn,this.inptCounter,this.plusBtn);
 
-        this.addEventListener('submit', (e) => {
-            alert();
+        this.addEventListener('keyup', (e) => {
+            if( e.code === 'Enter' ){
+                const inptValue = this.inptCounter.value;
+                this.inptCounter.setAttribute('value',inptValue);
+                this.setAttribute('count', inptValue);
+            }
         });
 
         this.plusBtn.addEventListener('click', () => {
@@ -43,6 +47,7 @@ export default class ProductCounter extends HTMLElement{
 
     minus (){
         this.inptCounter.setAttribute('value',--this.counter);
+        this.inptCounter.value = this.counter;
         this.setAttribute('count',this.counter); 
     //    if(this.counter <= 0){
     //         this.minusBtn.setAttribute('disabled',true);
@@ -51,6 +56,7 @@ export default class ProductCounter extends HTMLElement{
 
     plus (){
         this.inptCounter.setAttribute('value',++this.counter);
+        this.inptCounter.value = this.counter;
         this.setAttribute('count',this.counter);
     }
 
