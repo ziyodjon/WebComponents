@@ -1,12 +1,12 @@
 export default class ProductCounter extends HTMLElement{
     //counter = 0;
     static get observedAttributes(){
-        return ['count','max_count'];
+        return ['value','max_count'];
     }
 
     constructor(){
         super();
-        this.counter = this.getAttribute('count');
+        this.counter = this.getAttribute('value');
         this.maxCount = this.getAttribute('max_count');
 
         this.plusBtn = document.createElement('button');
@@ -20,13 +20,13 @@ export default class ProductCounter extends HTMLElement{
         
         this.append(this.minusBtn,this.inptCounter,this.plusBtn);
 
-        this.addEventListener('keyup', (e) => {
-            if( e.code === 'Enter' ){
-                const inptValue = this.inptCounter.value;
-                this.inptCounter.setAttribute('value',inptValue);
-                this.setAttribute('count', inptValue);
-            }
-        });
+        // this.addEventListener('keyup', (e) => {
+        //     if( e.code === 'Enter' ){
+        //         const inptValue = this.inptCounter.value;
+        //         this.inptCounter.setAttribute('value',inptValue);
+        //         this.setAttribute('count', inptValue);
+        //     }
+        // });
 
         this.plusBtn.addEventListener('click', () => {
             this.plus();
@@ -46,24 +46,23 @@ export default class ProductCounter extends HTMLElement{
 
 
     minus (){
-        this.inptCounter.setAttribute('value',--this.counter);
-        this.inptCounter.value = this.counter;
-        this.setAttribute('count',this.counter); 
-    //    if(this.counter <= 0){
-    //         this.minusBtn.setAttribute('disabled',true);
-    //    }
+        this.inptCounter.value = parseInt(this.inptCounter.value);
+        this.inptCounter.value--;
+        this.inptCounter.setAttribute('value',this.inptCounter.value);
+        this.setAttribute('value',this.inptCounter.value);
     }
 
     plus (){
-        this.inptCounter.setAttribute('value',++this.counter);
-        this.inptCounter.value = this.counter;
-        this.setAttribute('count',this.counter);
+        this.inptCounter.value = parseInt(this.inptCounter.value);
+        this.inptCounter.value++;
+        this.inptCounter.setAttribute('value',this.inptCounter.value);
+        this.setAttribute('value',this.inptCounter.value);
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
 
         
-        if(attr === 'count'){
+        if(attr === 'value'){
 
             this.inptCounter.setAttribute('value',newValue);
 
@@ -107,20 +106,14 @@ export default class ProductCounter extends HTMLElement{
         }
     }
 
-    get count(){
-        return this.counter;
-    }
-
-    set count(value){
-        this.setAttribute('count', value);
-    }
+    
 
     get max_count(){
         return this.counter;
     }
 
     set max_count(value){
-        this.setAttribute('count', value);
+        this.setAttribute('value', value);
     }
 
     get value(){
@@ -129,6 +122,6 @@ export default class ProductCounter extends HTMLElement{
     
     set value(value){
         this.inptCounter.setAttribute('value',value);
-        this.setAttribute('count', value);
+        this.setAttribute('value', value);
     }
 }
