@@ -63,10 +63,10 @@ export default class ProductCounter extends HTMLElement{
 
         
         if(attr === 'value'){
+            //this.inptCounter.setAttribute('value',parseInt(newValue));
+            this.inptCounter.value = newValue;
 
-            this.inptCounter.setAttribute('value',newValue);
-
-            this.counter = newValue;
+            //this.counter = newValue;
 
             if(this.counter > this.maxCount){
                 this.plusBtn.setAttribute('disabled',true);
@@ -122,6 +122,7 @@ export default class ProductCounter extends HTMLElement{
     
     set value(value){
         this.inptCounter.setAttribute('value',value);
+        this.setAttribute('value', '');
         this.setAttribute('value', value);
     }
 }
